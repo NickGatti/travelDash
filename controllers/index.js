@@ -3,6 +3,13 @@ const knex = require( "../db/knex.js" );
 module.exports = {
 
     view: function ( req, res ) {
-        res.render( 'index' );
+        if ( !req.session.user ) {
+            req.session.user = {}
+            req.session.save( function () {
+                res.render( 'index' );
+            } )
+        } else {
+            res.render( 'index' );
+        }
     },
 }
