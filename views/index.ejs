@@ -10,6 +10,10 @@
 				text-decoration: none;
 				box-sizing: border-box;
 			}
+
+			.wrongPassword {
+				color: red;
+			}
 		</style>
 	</head>
 
@@ -24,6 +28,9 @@
 				<input type="submit">
 			</form>
 		</div>
+		<% if (!(password)) { %>
+			<h4 class="wrongPassword">Wrong password</h4>
+			<% } %>
 	</body>
 
 </html>
