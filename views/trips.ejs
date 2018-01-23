@@ -17,6 +17,18 @@
 		<h1>Welcome <%= user.name %></h1>
 
 
+		<h3>Book a flight</h3>
+
+		<form class="form" action="/trips/add" method="post">
+			<select name="flight">
+				<% for (let i = 0; i < flights.length; i++) { %>
+					<option value="<%= flights[i].id %>"><%= `Start: ${flights[i].start} Destination: ${flights[i].destination} Airline: ${flights[i].airline_name}` %></option>
+				<% } %>
+			</select>
+			<br>
+			<br>
+			<input type="submit" value="Book flight">
+		</form>
 	</body>
 
 </html>
