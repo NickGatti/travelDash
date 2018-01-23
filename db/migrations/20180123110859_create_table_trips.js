@@ -10,7 +10,7 @@ exports.up = function ( knex, Promise ) {
             .index()
         table.integer( 'flight_id' )
             .references( 'id' )
-            .inTable( 'airline' )
+            .inTable( 'flight' )
             .onDelete( 'CASCADE' )
             .index()
         table.timestamps( true, true )
