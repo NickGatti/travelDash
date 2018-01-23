@@ -11,10 +11,13 @@ module.exports = {
                         knex( 'trips' )
                             .join( 'users', 'trips.user_id', 'users.id' )
                             .where( 'users.email', foundEmail[ 0 ].email ).then( ( tripsData ) => {
+                                console.log( tripsData );
                                 req.session.user.id = foundEmail[ 0 ].id
                                 req.session.user.name = foundEmail[ 0 ].name
                                 req.session.user.email = foundEmail[ 0 ].email
-                                req.session.user.trips = tripsData
+                                req.session.user.trips = tripsData.sort( function ( a, b ) {
+                                    return a.flight_id - b.flight_id
+                                } )
                                 res.redirect( '../trips' );
                             } )
                     } else {
