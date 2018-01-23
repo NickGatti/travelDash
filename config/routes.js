@@ -11,4 +11,6 @@ module.exports = function ( app ) {
 
     app.get( '/trips', trips.view )
 
+    app.post( '/trips/add', trips.addTrip )
+
 }
