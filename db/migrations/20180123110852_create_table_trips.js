@@ -1,6 +1,7 @@
 exports.up = function ( knex, Promise ) {
     return knex.schema.createTable( 'trips', ( table ) => {
         table.increments()
+        table.string( 'title' ).notNullable()
         table.text( 'description' ).notNullable()
         table.integer( 'user_id' )
             .references( 'id' )
