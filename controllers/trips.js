@@ -8,11 +8,17 @@ module.exports = {
             .select( 'flight.id', 'flight.start', 'flight.destination', 'flight.created_at', 'flight.updated_at', 'airline.name AS airline_name' )
             .join( 'airline', 'flight.airline_id', 'airline.id' )
             .then( ( flightData ) => {
-                res.render( 'trips', {
-                    user: req.session.user,
-                    flights: flightData,
-                    trips: req.session.user.trips
-                } );
+                knex( 'trips' )
+                    .join( 'users', 'trips.user_id', 'users.id' )
+                    .where( 'users.email', req.session.user.email ).then( ( tripsData ) => {
+                        req.session.user.trips = tripsData
+
+                        res.render( 'trips', {
+                            user: req.session.user,
+                            flights: flightData,
+                            trips: req.session.user.trips
+                        } );
+                    } )
             } )
     },
 
