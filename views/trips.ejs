@@ -16,6 +16,20 @@
 	<body>
 		<h1>Welcome <%= user.name %></h1>
 
+		<h3>Current Trips:</h3>
+
+		<div class="container">
+			<% for (let i = 0; i < trips.length; i++) { %>
+				<div class="card">
+					<p>
+						<%= trips[i].title %>
+					</p>
+					<p>
+						<%= trips[i].description %>
+					</p>
+				</div>
+				<% } %>
+		</div>
 
 		<h3>Book a flight</h3>
 

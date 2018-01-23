@@ -8,9 +8,15 @@ module.exports = {
                 if ( foundEmail[ 0 ].email && foundEmail[ 0 ].password && foundEmail[ 0 ].name ) {
                     if ( req.body.password === foundEmail[ 0 ].password ) {
                         console.log( 'Logged in' );
-                        req.session.user.name = foundEmail[ 0 ].name
-                        req.session.user.email = foundEmail[ 0 ].email
-                        res.redirect( '../trips' );
+                        knex( 'trips' )
+                            .join( 'users', 'trips.user_id', 'users.id' )
+                            .where( 'users.email', foundEmail[ 0 ].email ).then( ( tripsData ) => {
+                                console.log( tripsData );
+                                req.session.user.name = foundEmail[ 0 ].name
+                                req.session.user.email = foundEmail[ 0 ].email
+                                req.session.user.trips = tripsData
+                                res.redirect( '../trips' );
+                            } )
                     } else {
                         console.log( 'Wrong password' );
                         res.render( 'index', {
@@ -25,6 +31,7 @@ module.exports = {
                     .then( () => {
                         req.session.user.name = req.body.name
                         req.session.user.email = req.body.email
+                        req.session.user.trips = []
                         res.redirect( '../trips' );
                     } )
             }
