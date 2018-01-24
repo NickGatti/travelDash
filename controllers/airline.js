@@ -16,9 +16,11 @@ module.exports = {
     },
 
     airlineLogin: function ( req, res ) {
-        sendNoLogin( req, res )
-        req.session.user.airline_id = req.body.airline
-        res.redirect( '../airline' );
+
+        if ( sendNoLogin( req, res ) ) {
+            req.session.user.airline_id = req.body.airline
+            res.redirect( '/airline' );
+        }
     },
 
     airlineView: function ( req, res ) {
@@ -40,9 +42,12 @@ module.exports = {
 }
 
 function sendNoLogin( req, res ) {
-    if ( !req.session.user || !req.session.user.airline_id || !req.session.user.id || !req.session.user.name || !req.session.user.email ) {
+    if ( !req.session.user ) {
+        console.log( 'No session on login check' );
         res.render( 'index', {
             password: "NOLOGIN"
         } );
+        return false
     }
+    return true
 }

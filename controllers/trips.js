@@ -32,7 +32,7 @@ module.exports = {
                     knex( 'trips' )
                         .insert( { user_id: req.session.user.id, title: `${flightData[0].start} to ${flightData[0].destination}`, description: `${flightData[0].start} to: ${flightData[0].destination} Airline: ${airlineData[0].name} - ${airlineData[0].description}`, flight_id: flightData[ 0 ].id } )
                         .then( () => {
-                            res.redirect( '../trips' );
+                            res.redirect( '/trips' );
                         } )
                 } )
             } )

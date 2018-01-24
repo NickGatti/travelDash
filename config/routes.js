@@ -18,7 +18,7 @@ module.exports = function ( app ) {
 
     app.get( '/airline/login', airline.airlineLoginSelect )
 
-    app.post( '/airline/login', airline.airlineLogin )
+    app.post( '/airline/panel/login', airline.airlineLogin )
 
     app.get( '/airline', airline.airlineView )
 
