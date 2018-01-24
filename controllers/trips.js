@@ -10,6 +10,7 @@ const knex = require("../db/knex.js");
 module.exports = {
   index: function(req, res) {
     knex('trips')
+      .where('user_id', req.session.user.id)
       .then((results)=>{
         knex('flight')
           .then((flightData)=>{
