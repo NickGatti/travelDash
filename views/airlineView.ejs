@@ -10,6 +10,19 @@
 				font-family: sans-serif;
 				box-sizing: border-box;
 			}
+
+			.container {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.card {
+				min-width: 200px;
+				min-height: 300px;
+				border: 1px solid black;
+			}
 		</style>
 	</head>
 
@@ -17,6 +30,22 @@
 		<h1>Welcome <%= user.name %></h1>
 
 		<h3>Config Panel for: <%= airline.name %></h3>
+
+		<div class="container">
+			<% for (let i = 0; i < flights.length; i++) { %>
+				<div class="card">
+					<p>
+						<%=Flight ID: flights[i].id %>
+					</p>
+					<p>
+						<%=Flight Start: flights[i].start %>
+					</p>
+					<p>
+						<%=Flight Destination: flights[i].destination %>
+					</p>
+				</div>
+				< } %>
+		</div>
 	</body>
 
 </html>

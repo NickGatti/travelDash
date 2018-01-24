@@ -26,10 +26,15 @@ module.exports = {
         knex( 'airline' )
             .where( 'id', req.session.user.airline_id )
             .then( ( airlineData ) => {
-                res.render( 'airlineView', {
-                    user: req.session.user,
-                    airline: airlineData[ 0 ]
-                } );
+                knex( 'flight' )
+                    .where( 'id', airlineData[ 0 ].id )
+                    .then( ( flightData ) => {
+                        res.render( 'airlineView', {
+                            user: req.session.user,
+                            airline: airlineData[ 0 ],
+                            flights: flightData
+                        } );
+                    } )
             } )
     }
 }
