@@ -44,12 +44,10 @@ module.exports = {
             } else {
                 console.log( 'No user' );
                 knex( 'users' )
-                    .insert( { name: req.body.name, email: req.body.email, password: req.body.password } )
-                    .then( () => {
-                        req.session.user.name = req.body.name
-                        req.session.user.email = req.body.email
-                        req.session.user.trips = []
-                        res.redirect( '/' );
+                    .insert( { name: req.body.name, email: req.body.email, password: req.body.password }, '*' )
+                    .then( ( user ) => {
+                        req.session.user = user[ 0 ];
+                        res.redirect( '/trips' );
                     } )
             }
         } )

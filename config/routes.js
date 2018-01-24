@@ -11,6 +11,15 @@ module.exports = function ( app ) {
 
     app.post( '/users/add', users.addUser );
 
+    app.use( ( req, res, next ) => {
+        if ( !req.session.user ) {
+            res.redirect( '/' )
+            return;
+        } else {
+            next();
+        }
+    } )
+
     app.get( '/trips', trips.view )
 
     app.post( '/trips/add', trips.addTrip )
