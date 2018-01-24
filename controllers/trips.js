@@ -14,6 +14,6 @@ module.exports = {
         res.render('trips', {trips:results, user:req.session.user});
       })
 
-  }
+  },
 
 }

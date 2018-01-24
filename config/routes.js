@@ -8,4 +8,6 @@ module.exports = function(app){
   app.post('/newuser', main.create)
 
   app.get('/trips', trips.index )
+
+  app.post('/booknewtrip', trips.newBooking)
 }
