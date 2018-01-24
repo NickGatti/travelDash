@@ -5,7 +5,7 @@
     <title></title>
   </head>
   <body>
-    <h1>Welcome "<%= user.name %>" </h1>
+    <h1>Welcome "<%= user.name %>"</h1>
 <hr>
 <% for (let i = 0; i < trips.length;i++) { %>
   <div>
@@ -21,7 +21,12 @@
       <input type="integer" name="user_id" placeholder="user_id">
       <input type="string" name="title" placeholder="title">
       <input type="text" name="description" placeholder="description">
-      <input type="string" name="flight_id" placeholder="flight_id">\
+      <input type="string" name="flight_id" placeholder="flight_id">
+      <select name="flight_id">
+        <% for (let i = 0; i < flight.length; i++) { %>
+          <option value="<%=flight[i].id%>"><%= flight[i].start%> - <%= flight[i].destination %></option>
+        <% } %>
+      </select>
       <input type="submit">
     </form>
 

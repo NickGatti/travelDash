@@ -9,5 +9,5 @@ module.exports = function(app){
 
   app.get('/trips', trips.index )
 
-  app.post('/booknewtrip', trips.newBooking)
+  // app.post('/booknewtrip', trips.newBooking)
 }
