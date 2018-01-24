@@ -14,12 +14,14 @@ module.exports = function ( app ) {
 
     app.post( '/trips/add', trips.addTrip )
 
-    app.get( '/airline/new', airline.addAirline )
-
     app.get( '/airline/login', airline.airlineLoginSelect )
 
     app.post( '/airline/panel/login', airline.airlineLogin )
 
     app.get( '/airline', airline.airlineView )
+
+    app.get( '/airline/new', airline.newAirline )
+
+    app.post( '/airline/add', airline.addAirline )
 
 }

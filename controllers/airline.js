@@ -2,10 +2,6 @@ const knex = require( "../db/knex.js" );
 
 module.exports = {
 
-    addAirline: function ( req, res ) {
-        res.render( 'airlineAdd' );
-    },
-
     airlineLoginSelect: function ( req, res ) {
         knex( 'airline' )
             .then( ( airlineData ) => {
@@ -16,7 +12,6 @@ module.exports = {
     },
 
     airlineLogin: function ( req, res ) {
-
         if ( sendNoLogin( req, res ) ) {
             req.session.user.airline_id = req.body.airline
             res.redirect( '/airline' );
@@ -38,6 +33,19 @@ module.exports = {
                         } );
                     } )
             } )
+    },
+
+    newAirline: function ( req, res ) {
+        res.render( 'airlineAdd' );
+    },
+
+    addAirline: function ( req, res ) {
+        knex( 'airline' ).insert( {
+            name: req.body.name,
+            description: req.body.description
+        } ).then( () => {
+            res.redirect( '/airline/login' );
+        } )
     }
 }
 
