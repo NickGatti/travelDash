@@ -28,9 +28,11 @@
 				<input type="submit">
 			</form>
 		</div>
-		<% if (!(password)) { %>
-			<h4 class="wrongPassword">Wrong password</h4>
-			<% } %>
+		<% if (password === "NOLOGIN") { %>
+			<h4 class="wrongPassword">Please Login!</h4>
+			<% } else if (password === false) { %>
+				<h4 class="wrongPassword">Wrong password!</h4>
+				<% } %>
 	</body>
 
 </html>

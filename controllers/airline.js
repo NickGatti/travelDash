@@ -22,9 +22,28 @@ module.exports = {
     },
 
     airlineView: function ( req, res ) {
-        res.render( 'airlineView', {
-            user: req.session.user
-        } );
+
+        if ( !req.session.user.airline_id ) {
+            res.render( 'index', {
+                password: "NOLOGIN"
+            } );
+        }
+
+        knex( 'airline' )
+            .where( 'id', req.session.user.airline_id )
+            .then( ( airlineData ) => {
+
+                if ( !req.session.user.id || !req.session.user.name || !req.session.user.email ) {
+                    res.render( 'index', {
+                        password: "NOLOGIN"
+                    } );
+                } else {
+                    res.render( 'airlineView', {
+                        user: req.session.user,
+                        airline: airlineData[ 0 ]
+                    } );
+                }
+            } )
     }
 
 }
