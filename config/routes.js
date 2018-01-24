@@ -3,6 +3,7 @@ const index = require( "../controllers/index.js" )
 const users = require( "../controllers/users.js" )
 const trips = require( "../controllers/trips.js" )
 const airline = require( "../controllers/airline.js" )
+const flight = require( "../controllers/flight.js" )
 
 module.exports = function ( app ) {
 
@@ -24,4 +25,5 @@ module.exports = function ( app ) {
 
     app.post( '/airline/add', airline.addAirline )
 
+    app.post( '/flight/add', flight.addFlight )
 }
