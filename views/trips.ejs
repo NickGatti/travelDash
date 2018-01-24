@@ -7,6 +7,7 @@
   <body>
     <h1>Welcome "<%= user.name %>"</h1>
 <hr>
+<h1>Upcoming trips:</h1>
 <% for (let i = 0; i < trips.length;i++) { %>
   <div>
     <p>User ID: <%=trips[i].user_id %></p>
@@ -18,10 +19,9 @@
   <% } %>
   <h1>Plan a new trip</h2>
     <form action="/booknewtrip"  method="post">
-      <input type="integer" name="user_id" placeholder="user_id">
       <input type="string" name="title" placeholder="title">
       <input type="text" name="description" placeholder="description">
-      <input type="string" name="flight_id" placeholder="flight_id">
+
       <select name="flight_id">
         <% for (let i = 0; i < flight.length; i++) { %>
           <option value="<%=flight[i].id%>"><%= flight[i].start%> - <%= flight[i].destination %></option>
